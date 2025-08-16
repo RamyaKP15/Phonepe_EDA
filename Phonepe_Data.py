@@ -630,3 +630,43 @@ def data_insertion_mysql():
 
 
 data_insertion_mysql()
+
+#Inser Data from CSV file
+class inser_from_csv():
+    def insert_to_aggregated_transaction(self,Conn_string,csvpath):
+        try:
+          conn = psycopg2.connect(Conn_string)
+          cursor = conn.cursor()
+          data = pd.read_csv(csvpath)
+          data = data.values.tolist()
+          query = "insert into aggregated_transaction_1 values(%s,%s,%s,%s,%s,%s)"
+          for i in data:
+              cursor.execute(query, tuple(i))
+          conn.commit()
+          cursor.close()
+          conn.close()
+
+        except Exception as e:
+          print(f"❌ Error: {e}")
+def data_insertion_db():
+    try:
+        # -------------------------------------
+        # Database Configuration (update yours)
+        # -------------------------------------
+        DB_CONFIG = {
+            'host': RENDER_DB_HOST,      # e.g., 'dpg-cn5v9u8l6cac73bs9ug0-a'
+            'database': RENDER_DB_NAME,   # e.g., 'mydb'
+            'user': RENDER_DB_USER,            # e.g., 'mydb_user'
+            'password': RENDER_DB_PASSWORD,    # Find in Render dashboard
+            'port': RENDER_DB_PORT                     # Usually 5432
+        }
+
+        # 1. Connect to DB
+        Conn_string=f"host={DB_CONFIG['host']} dbname={DB_CONFIG['database']} user={DB_CONFIG['user']} password={DB_CONFIG['password']} port={DB_CONFIG['port']}"
+        # 2. Call class to Insert Data
+        db=inser_from_csv()
+        db.insert_to_aggregated_transaction(Conn_string,'aggregated_transaction.csv')
+    except Exception as e:
+          print(f"❌ Error: {e}")
+
+data_insertion_db()
