@@ -605,11 +605,11 @@ def data_insertion_mysql():
         # Database Configuration (update yours)
         # -------------------------------------
         DB_CONFIG = {
-            'host': 'dpg-d292oh7diees73fhkbt0-a.singapore-postgres.render.com',      # e.g., 'dpg-cn5v9u8l6cac73bs9ug0-a'
-            'database': 'postgres_online_tykr',   # e.g., 'mydb'
-            'user': 'postgres_online_tykr_user',            # e.g., 'mydb_user'
-            'password': 'm2SQ6UPiVFM4HxteTBXVrBC8qFtVQv8p',    # Find in Render dashboard
-            'port': 5432                                    # Usually 5432
+            'host': 'dpg-d292oh7diees73fhkbt0',      # e.g., 'dpg-cn5v9u8l6cac73bs9ug0-a'
+            'database': 'postgres',   # e.g., 'mydb'
+            'user': 'postgres_online',            # e.g., 'mydb_user'
+            'password': 'm2SQ6UPiVFM4HxteT',    # Find in Render dashboard
+            'port': 5432
         }
 
         # 1. Connect to DB
@@ -627,5 +627,6 @@ def data_insertion_mysql():
 
     except Exception as e:
           print(f"❌ Error: {e}")
+
 
 data_insertion_mysql()
