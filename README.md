@@ -11,7 +11,7 @@ The insights on the website and in the report have been drawn from two key sourc
 
  1. [Plotly](https://plotly.com/python/) - (To plot and visualize the data)
  2. [Pandas](https://pandas.pydata.org/docs/) - (To Create a DataFrame with the scraped data)
- 3. mysql.connector - (To store and retrieve the data)
+ 3. psycopg2 - (To store and retrieve the data)
  4. [Streamlit](https://docs.streamlit.io/library/api-reference) - (To Create Graphical user Interface)
  5. json - (To load the json files)
  6. git.repo.base - (To clone the GitHub repository)
@@ -29,14 +29,15 @@ The insights on the website and in the report have been drawn from two key sourc
    If the libraries are already installed then we have to import those into our script by mentioning the below codes.
 
         import pandas as pd
-        import mysql.connector as sql
         import streamlit as st
+        import pandas as pd
         import plotly.express as px
+        import requests
+        import psycopg2 as pg
+        import git
+        from git import Repo
         import os
         import json
-        from streamlit_option_menu import option_menu
-        from PIL import Image
-        from git.repo.base import Repo
  
  
  ### Step 2:
