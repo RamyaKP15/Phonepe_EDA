@@ -101,14 +101,14 @@ Looping through each and every folder and opening the json files appending only 
  
    To insert the datadrame into SQL first I've created a new database and tables using **psycopg2** library in Python to connect to a psycopg2 database and insert the transformed data using SQL commands.
    
-   **Creating the connection between python and mysql**
+   **Creating the connection between python and Posgres**
    
-        mydb = sql.connect(host="localhost",
+        pgdb = pg.connect(host="localhost",
                    user="username",
                    password="password",
                    database= "phonepe_pulse"
                   )
-        mycursor = mydb.cursor(buffered=True)
+        pgcursor = pgdb.cursor()
         
    **Creating tables**
    
@@ -118,16 +118,16 @@ Looping through each and every folder and opening the json files appending only 
         
             #here %S means string values 
             sql = "INSERT INTO agg_trans VALUES (%s,%s,%s,%s,%s,%s)"
-            mycursor.execute(sql, tuple(row))
+            pgcursor.execute(sql, tuple(row))
             
             # the connection is not auto committed by default, so we must commit to save our changes
-            mydb.commit()
+            pgdb.commit()
     
  ### Step 5:
  
  **Dashboard creation:**
  
-   To create colourful and insightful dashboard I've used Plotly libraries in Python to create an interactive and visually appealing dashboard. Plotly's built-in Pie, Bar, Geo map functions are used to display the data on a charts and map and Streamlit is used to create a user-friendly interface with multiple dropdown options for users to select different facts and figures to display.
+   To create colourful and insightful dashboard I've used Plotly libraries in Python to create an interactive and visually appealing dashboard. Plotly's built-in Pie, Bar,line, Geo map functions are used to display the data on a charts and map and Streamlit is used to create a user-friendly interface with multiple dropdown options for users to select different facts and figures to display.
     
  ### Step 6:
  
